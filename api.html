@@ -16175,13 +16175,47 @@
             model = whisper.model.Whisper(dims=dims)
 
         self.model = model
-</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L33" target="_blank" class="src-more">View full source on GitHub →</a></details><h3 class="mt">Methods</h3><div class="mblk"><code>.forward()</code> <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank" class="gh-link">L66</a><div class="mdoc"><p>Forward pass for training.</p>
+</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L33" target="_blank" class="src-more">View full source on GitHub →</a></details><h3 class="mt">Methods</h3><div class="mblk"><code>.forward(speech, speech_lengths, text, text_lengths, **kwargs)</code> <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank" class="gh-link">L66</a><div class="mdoc"><p>Forward pass for training. Computes cross-entropy loss.</p>
+<h4>Args:</h4>
+<ul>
+<li><code>speech</code> — (B, T, D) mel-spectrogram features</li>
+<li><code>speech_lengths</code> — (B,) lengths of each audio</li>
+<li><code>text</code> — (B, U) token IDs (with SOT/EOT tokens)</li>
+<li><code>text_lengths</code> — (B,) lengths of each text sequence</li>
+</ul>
+<h4>Returns:</h4>
+<p>dict with &quot;loss&quot; and optionally &quot;stats&quot;</p>
 </div><details class="src-block"><summary>📄 Source</summary><pre><code>    def forward(
         self,
+        speech: torch.Tensor = None,
+        speech_lengths: torch.Tensor = None,
+        text: torch.Tensor = None,
+        text_lengths: torch.Tensor = None,
+        **kwargs,
     ):
-        &quot;&quot;&quot;Forward pass for training.&quot;&quot;&quot;
-        pass
-</code></pre></details></div><div class="mblk"><code>.inference(data_in, data_lengths, key, tokenizer, frontend, **kwargs)</code> <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L72" target="_blank" class="gh-link">L72</a><div class="mdoc"><p>Run inference on input data.</p>
+        &quot;&quot;&quot;Forward pass for training. Computes cross-entropy loss.
+
+        Args:
+            speech: (B, T, D) mel-spectrogram features
+            speech_lengths: (B,) lengths of each audio
+            text: (B, U) token IDs (with SOT/EOT tokens)
+            text_lengths: (B,) lengths of each text sequence
+        Returns:
+            dict with &quot;loss&quot; and optionally &quot;stats&quot;
+        &quot;&quot;&quot;
+        if speech is None or text is None:
+            raise ValueError(&quot;forward() requires speech and text for training&quot;)
+
+        # Encoder
+        audio_features = self.model.encoder(speech)
+
+        # Decoder: shift text right for teacher forcing
+        # text format: [SOT, lang, task, ..., tokens, EOT]
+        decoder_input = text[:, :-1]
+        decoder_target = text[:, 1:]
+
+        # Decoder forward
+</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank" class="src-more">View full source →</a></details></div><div class="mblk"><code>.inference(data_in, data_lengths, key, tokenizer, frontend, **kwargs)</code> <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L111" target="_blank" class="gh-link">L111</a><div class="mdoc"><p>Run inference on input data.</p>
 <h4>Args:</h4>
 <ul>
 <li><code>data_in</code> — Input data (audio samples, file paths, or text).</li>
@@ -16221,15 +16255,49 @@
             self.frontend = frontend
         else:
             frontend = frontend if frontend is not None else self.frontend
-</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L72" target="_blank" class="src-more">View full source →</a></details></div></div>
-<div class="api-detail" id="e260"><span class="dtag badge-m">method</span><h2><code>WhisperWarp.forward()</code></h2><div class="dmod">funasr.models.whisper.WhisperWarp · <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank">View on GitHub ↗</a></div><div class="ddoc"><p>Forward pass for training.</p>
+</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L111" target="_blank" class="src-more">View full source →</a></details></div></div>
+<div class="api-detail" id="e260"><span class="dtag badge-m">method</span><h2><code>WhisperWarp.forward(speech, speech_lengths, text, text_lengths, **kwargs)</code></h2><div class="dmod">funasr.models.whisper.WhisperWarp · <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank">View on GitHub ↗</a></div><div class="ddoc"><p>Forward pass for training. Computes cross-entropy loss.</p>
+<h4>Args:</h4>
+<ul>
+<li><code>speech</code> — (B, T, D) mel-spectrogram features</li>
+<li><code>speech_lengths</code> — (B,) lengths of each audio</li>
+<li><code>text</code> — (B, U) token IDs (with SOT/EOT tokens)</li>
+<li><code>text_lengths</code> — (B,) lengths of each text sequence</li>
+</ul>
+<h4>Returns:</h4>
+<p>dict with &quot;loss&quot; and optionally &quot;stats&quot;</p>
 </div><details class="src-block"><summary>📄 Source code</summary><pre><code>    def forward(
         self,
+        speech: torch.Tensor = None,
+        speech_lengths: torch.Tensor = None,
+        text: torch.Tensor = None,
+        text_lengths: torch.Tensor = None,
+        **kwargs,
     ):
-        &quot;&quot;&quot;Forward pass for training.&quot;&quot;&quot;
-        pass
-</code></pre></details></div>
-<div class="api-detail" id="e261"><span class="dtag badge-m">method</span><h2><code>WhisperWarp.inference(data_in, data_lengths, key, tokenizer, frontend, **kwargs)</code></h2><div class="dmod">funasr.models.whisper.WhisperWarp · <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L72" target="_blank">View on GitHub ↗</a></div><div class="ddoc"><p>Run inference on input data.</p>
+        &quot;&quot;&quot;Forward pass for training. Computes cross-entropy loss.
+
+        Args:
+            speech: (B, T, D) mel-spectrogram features
+            speech_lengths: (B,) lengths of each audio
+            text: (B, U) token IDs (with SOT/EOT tokens)
+            text_lengths: (B,) lengths of each text sequence
+        Returns:
+            dict with &quot;loss&quot; and optionally &quot;stats&quot;
+        &quot;&quot;&quot;
+        if speech is None or text is None:
+            raise ValueError(&quot;forward() requires speech and text for training&quot;)
+
+        # Encoder
+        audio_features = self.model.encoder(speech)
+
+        # Decoder: shift text right for teacher forcing
+        # text format: [SOT, lang, task, ..., tokens, EOT]
+        decoder_input = text[:, :-1]
+        decoder_target = text[:, 1:]
+
+        # Decoder forward
+</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L66" target="_blank" class="src-more">View full source on GitHub →</a></details></div>
+<div class="api-detail" id="e261"><span class="dtag badge-m">method</span><h2><code>WhisperWarp.inference(data_in, data_lengths, key, tokenizer, frontend, **kwargs)</code></h2><div class="dmod">funasr.models.whisper.WhisperWarp · <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L111" target="_blank">View on GitHub ↗</a></div><div class="ddoc"><p>Run inference on input data.</p>
 <h4>Args:</h4>
 <ul>
 <li><code>data_in</code> — Input data (audio samples, file paths, or text).</li>
@@ -16269,7 +16337,7 @@
             self.frontend = frontend
         else:
             frontend = frontend if frontend is not None else self.frontend
-</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L72" target="_blank" class="src-more">View full source on GitHub →</a></details></div>
+</code></pre><a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper/model.py#L111" target="_blank" class="src-more">View full source on GitHub →</a></details></div>
 <div class="api-detail" id="e262"><span class="dtag badge-c">class</span><h2>OpenAIWhisperModel</h2><div class="dmod">funasr.models.whisper_lid · <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/whisper_lid/model.py#L22" target="_blank">View on GitHub ↗</a></div><div class="ddoc"><ul>
 <li><code>Whisper</code> — LID: Language Identification using OpenAI Whisper encoder.</li>
 </ul>
