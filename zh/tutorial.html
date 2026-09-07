@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>第一次转写 - FunASR</title>
+<meta content="第一次转写" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<link href="https://www.funasr.com/docs/quickstart.html" rel="canonical"/>
+<link href="https://www.funasr.com/en/docs/quickstart.html" hreflang="en" rel="alternate"/>
+<link href="https://www.funasr.com/docs/quickstart.html" hreflang="zh-CN" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="第一次转写 - FunASR" property="og:title"/>
+<meta content="第一次转写" property="og:description"/>
+<meta content="https://www.funasr.com/docs/quickstart.html" property="og:url"/>
+<link href="../assets/css/site.d651b1dbf605.css" rel="stylesheet"/>
+<link href="../assets/css/experience.5803993934f8.css" rel="stylesheet"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "applicationCategory": "DeveloperApplication", "codeRepository": "https://github.com/modelscope/FunASR", "dateModified": "2026-09-01", "license": "https://github.com/modelscope/FunASR/blob/main/LICENSE", "name": "FunASR", "operatingSystem": "Linux, macOS, Windows", "url": "https://www.funasr.com/docs/quickstart.html"}</script>
+</head>
+<body data-copy-icon="../assets/lucide/copy.ea80e566c7a1.svg" data-language="zh" data-route="/docs/quickstart.html">
+<a class="skip-link" href="#main">跳到主要内容</a>
+<header class="site-header">
+<a aria-label="FunASR 首页" class="brand" href="https://www.funasr.com/">
+<span aria-hidden="true" class="brand-mark">F</span>
+<span>FunASR</span>
+</a>
+<button aria-controls="primary-navigation" aria-expanded="false" class="icon-button menu-button" data-menu-toggle="" title="打开目录" type="button">
+<img alt="" src="../assets/lucide/menu.90a31b3ab1cf.svg"/>
+</button>
+<nav aria-label="主目录" class="primary-navigation" data-primary-nav="" id="primary-navigation">
+<a href="https://www.funasr.com/">产品</a>
+<a href="https://www.funasr.com/deploy/">部署</a>
+<a href="https://www.funasr.com/models.html">模型</a>
+<a href="https://www.funasr.com/benchmarks.html">性能</a>
+<a href="https://www.funasr.com/ecosystem.html">生态</a>
+<a href="https://www.funasr.com/blog/">博客</a>
+<a href="https://www.funasr.com/docs/">文档</a>
+<a href="https://www.funasr.com/donors.html">功德榜</a>
+</nav>
+<div class="header-actions">
+<a class="icon-link" href="https://www.funasr.com/en/docs/quickstart.html" title="English">
+<img alt="" src="../assets/lucide/languages.ae9048feb2c7.svg"/>
+<span>EN</span>
+</a>
+<a aria-label="GitHub" class="icon-button" href="https://www.funasr.com/go/github" title="GitHub">
+<img alt="" src="../assets/lucide/github.793554449a30.svg"/>
+</a>
+</div>
+</header>
+<main id="main">
+<div class="docs-layout">
+<aside class="docs-sidebar">
+<a class="docs-home" href="https://www.funasr.com/docs/">文档中心</a>
+<details class="docs-navigation" open="">
+<summary class="docs-navigation-toggle">浏览目录</summary>
+<details open="">
+<summary>开始使用</summary>
+<nav aria-label="开始使用">
+<a href="https://www.funasr.com/docs/installation.html">安装与环境验证</a>
+<a aria-current="page" href="https://www.funasr.com/docs/quickstart.html">第一次转写</a>
+<a href="https://www.funasr.com/docs/python-api.html">Python SDK: AutoModel</a>
+<a href="https://www.funasr.com/docs/model-selection.html">选择第一个模型</a>
+<a href="https://www.funasr.com/docs/command-line.html">命令行转写</a>
+<a href="https://www.funasr.com/docs/migration.html">从 Whisper 与云 API 迁移</a>
+</nav>
+</details>
+<details open="">
+<summary>模型与能力</summary>
+<nav aria-label="模型与能力">
+<a href="https://www.funasr.com/docs/moss-transcribe-diarize.html">MOSS 转写与说话人分离</a>
+<a href="https://www.funasr.com/docs/model-zoo.html">Model Zoo</a>
+</nav>
+</details>
+<details open="">
+<summary>训练与扩展</summary>
+<nav aria-label="训练与扩展">
+<a href="https://www.funasr.com/docs/training.html">微调与评测</a>
+<a href="https://www.funasr.com/docs/model-registration.html">自定义模型注册</a>
+</nav>
+</details>
+<details open="">
+<summary>部署与接口</summary>
+<nav aria-label="部署与接口">
+<a href="https://www.funasr.com/docs/docker.html">容器环境与镜像选择</a>
+<a href="https://www.funasr.com/docs/runtime-guide.html">服务部署入口</a>
+<a href="https://www.funasr.com/docs/http-server.html">Python HTTP 服务</a>
+<a href="https://www.funasr.com/docs/kubernetes.html">Kubernetes 部署</a>
+<a href="https://www.funasr.com/docs/deployment-matrix.html">运行时与部署矩阵</a>
+<a href="https://www.funasr.com/docs/vllm.html">vLLM split-engine 推理</a>
+<a href="https://www.funasr.com/docs/native-vllm.html">原生 vLLM 验证记录</a>
+</nav>
+</details>
+<details open="">
+<summary>评测与运维</summary>
+<nav aria-label="评测与运维">
+<a href="https://www.funasr.com/docs/troubleshooting.html">安装与推理故障排查</a>
+<a href="https://www.funasr.com/docs/security.html">服务安全边界</a>
+<a href="https://www.funasr.com/docs/benchmark-method.html">可复现性能评测</a>
+<a href="https://www.funasr.com/docs/realtime-benchmark.html">实时 WebSocket 压测</a>
+</nav>
+</details>
+<details open="">
+<summary>应用与生态</summary>
+<nav aria-label="应用与生态">
+<a href="https://www.funasr.com/docs/use-cases.html">应用场景与示例</a>
+<a href="https://www.funasr.com/docs/community.html">社区集成</a>
+<a href="https://www.funasr.com/docs/repositories.html">四仓职责与贡献入口</a>
+<a href="https://www.funasr.com/docs/javascript.html">JavaScript 客户端</a>
+<a href="https://www.funasr.com/docs/workflows.html">工作流集成</a>
+</nav>
+</details>
+<details open="">
+<summary>协议与参考</summary>
+<nav aria-label="协议与参考">
+<a href="https://www.funasr.com/docs/service-api.html">HTTP API 契约</a>
+<a href="https://www.funasr.com/docs/websocket-protocol.html">C++ WebSocket 协议</a>
+<a href="https://www.funasr.com/docs/onnx-output.html">ONNX 二进制输出契约</a>
+</nav>
+</details>
+<a href="https://www.funasr.com/deploy/">部署手册 →</a>
+</details>
+</aside>
+<div class="docs-body">
+<nav aria-label="面包屑" class="breadcrumbs"><a href="https://www.funasr.com/">FunASR</a><span>/</span><a href="https://www.funasr.com/docs/">文档</a><span>/</span><span>第一次转写</span></nav>
+<header class="docs-title"><h1>第一次转写</h1><a class="source-link" data-source-link="" href="https://github.com/modelscope/FunASR/blob/main/docs/tutorial/README_zh.md">查看 / 编辑源文档 ↗</a></header>
+<article class="docs-article"><p>(简体中文 | <a href="https://www.funasr.com/en/docs/quickstart.html">English</a>)</p>
+<div class="source-title-anchor" id="python-sdk-教程"></div>
+<p>先完成<a href="https://www.funasr.com/docs/installation.html">安装与环境验证</a>。本页按首次转写、结果检查、VAD、批处理、模型专属选项的顺序介绍。模型选择、语言、依赖和模型卡请查阅<a href="https://www.funasr.com/docs/model-zoo.html">模型仓库</a>，不要将某个示例当成所有模型的通用能力。尚未配置本地环境时，可先看 <a href="https://github.com/modelscope/FunASR/blob/main/examples/colab/README_zh.md">Colab 快速体验</a>。</p>
+<p>FunASR 软件采用 <a href="https://github.com/modelscope/FunASR/blob/main/LICENSE">MIT 许可</a>。每个模型权重都有各自的许可：请记录完整模型 ID 与 revision，并以对应模型卡为准。只有模型卡明确链接 <a href="https://github.com/modelscope/FunASR/blob/main/MODEL_LICENSE">FunASR 模型许可协议</a> 时，该协议才适用。第三方集成仍属于第三方模型，例如 MOSS-Transcribe-Diarize 来自 OpenMOSS，不是 FunASR 训练的权重。</p>
+<p><a id="模型推理" name="模型推理"></a></p>
+<span data-legacy-doc-anchor="1-完成第一次转写" id="quick"></span><span data-legacy-doc-anchor="1-完成第一次转写" id="install"></span><span data-legacy-doc-anchor="1-完成第一次转写" id="offline"></span><h2 id="1-完成第一次转写">1. 完成第一次转写</h2>
+<p>安装 SDK 及匹配的 PyTorch/torchaudio 环境后，运行下面的 Python 代码。首次执行需要联网下载模型和公开示例 WAV，并预留磁盘与内存。示例基于仓库中的 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer/demo.py">Paraformer 示例</a>，不是本次文档审查中记录的推理结果。</p>
+<pre id="code-0"><code class="language-python">from funasr import AutoModel
+
+audio = "https://isv-data.oss-cn-hangzhou.aliyuncs.com/ics/MaaS/ASR/test_audio/asr_example_zh.wav"
+model = AutoModel(
+    model="paraformer-zh", hub="ms", device="cpu", ncpu=4,
+    disable_update=True, trust_remote_code=False,
+)
+results = model.generate(input=audio)
+for item in results:
+    print(item.get("key"), item.get("text", ""))
+print("Model directory:", model.model_path)
+</code></pre>
+<p>识别自己的录音时，将 <code>audio</code> 替换为存在的本地 WAV 路径。建议先使用与模型采样率匹配的短单声道录音，本示例为 16 kHz。文件解码能力取决于音频后端，先检查可读 WAV 比直接尝试任意媒体容器更简单。NumPy 波形没有采样率文件头，需要通过 <code>fs=sample_rate</code> 传入真实采样率，参见<a href="https://github.com/modelscope/FunASR/blob/main/funasr/utils/load_utils.py">音频加载器</a>；不要仅修改采样率标签而不重采样。</p>
+<p>后续 Python 代码块在同一会话中复用这里的 <code>AutoModel</code>、<code>audio</code> 和 <code>model</code>。断网使用时，请先按<a href="https://www.funasr.com/docs/installation.html">离线检查清单</a>准备完整本地模型目录和本地输入文件。<code>disable_update=True</code> 仅跳过 SDK 启动版本检查。</p>
+<h2 id="2-理解参数和结果">2. 理解参数和结果</h2>
+<p><code>AutoModel(...)</code> 构建模型与可选流水线组件，<code>model.generate(input=..., **options)</code> 执行推理。源码入口：<a href="https://github.com/modelscope/FunASR/blob/main/funasr/auto/auto_model.py">AutoModel</a>、<a href="https://github.com/modelscope/FunASR/blob/main/funasr/download/name_maps_from_hub.py">hub 别名映射</a>，以及具体模型的 <code>inference()</code> 实现。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用范围与含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code>、<code>hub</code></td>
+<td>模型 ID/别名或本地目录；默认 ModelScope (<code>ms</code>)，<code>hf</code> 选择 Hugging Face。同一别名可能对应不同 hub 仓库。</td>
+</tr>
+<tr>
+<td><code>device</code>、<code>ncpu</code></td>
+<td>入门显式使用 <code>cpu</code>；验证 PyTorch 构建与模型支持后再选择加速器。加载器存在 CPU 回退路径；<code>ncpu</code> 控制 PyTorch CPU 线程数。</td>
+</tr>
+<tr>
+<td><code>vad_model</code>、<code>punc_model</code>、<code>spk_model</code></td>
+<td>独立加载的可选模型；通过 <code>vad_kwargs</code>、<code>punc_kwargs</code>、<code>spk_kwargs</code> 配置。并非所有 ASR 后端都自动支持这些组合。</td>
+</tr>
+<tr>
+<td><code>batch_size</code></td>
+<td>普通非 VAD 路径每个解码 batch 的输入数量，仍受后端限制。</td>
+</tr>
+<tr>
+<td><code>batch_size_s</code></td>
+<td>VAD 分段组 batch 的秒数预算，按填充后的片段长度计算，不是文件数。当前 CPU VAD 路径逐段解码。</td>
+</tr>
+<tr>
+<td><code>batch_size_threshold_s</code></td>
+<td>VAD 组 batch 启发式使用的片段时长阈值，不是输入时长限制或通用内存上限。</td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td>可选的后端输出目录；仍会返回 Python 结果。具体文件和格式取决于模型。</td>
+</tr>
+</tbody>
+</table>
+<p><code>generate()</code> 返回字典列表，通常每条输入录音对应一个结果。使用可选字段前先检查实际键名：</p>
+<pre id="code-1"><code class="language-python">for item in results:
+    print(sorted(item.keys()))
+    print(item.get("text", ""))
+    print(item.get("timestamp", []))
+</code></pre>
+<p>Paraformer 路径在权重提供时间戳时，<code>timestamp</code> 为字/词元/词级的 <code>[start_ms, end_ms]</code> 区间。标点恢复或文本规范化后，不要假定每个可见字符都对应一组区间。其他后端可能返回不同结构的 <code>timestamps</code>，请按对应指南解析。无语音时可能返回空文本或空时间戳，不能当成有效转写。</p>
+<span data-legacy-doc-anchor="3-添加-vad标点与句级时间戳" id="spk"></span><span data-legacy-doc-anchor="3-添加-vad标点与句级时间戳" id="vad"></span><span data-legacy-doc-anchor="3-添加-vad标点与句级时间戳" id="punc"></span><span data-legacy-doc-anchor="3-添加-vad标点与句级时间戳" id="subtitle"></span><h2 id="3-添加-vad标点与句级时间戳">3. 添加 VAD、标点与句级时间戳</h2>
+<p>VAD 检测语音区间，本身不做转写。下面独立检测同一音频：</p>
+<pre id="code-2"><code class="language-python">vad = AutoModel(model="fsmn-vad", device="cpu", disable_update=True)
+vad_results = vad.generate(input=audio)
+for item in vad_results:
+    print(item["key"], item["value"])
+</code></pre>
+<p><code>value</code> 为相对于录音起点的 <code>[start_ms, end_ms]</code> 语音区间列表。空列表表示没有检测到区间。参见 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/fsmn_vad_streaming/demo.py">FSMN VAD 示例</a>。</p>
+<p>组合分段 ASR 与标点：</p>
+<pre id="code-3"><code class="language-python">pipeline = AutoModel(
+    model="paraformer-zh", vad_model="fsmn-vad", punc_model="ct-punc",
+    vad_kwargs={"max_single_segment_time": 30000},
+    device="cpu", disable_update=True, trust_remote_code=False,
+)
+segmented_results = pipeline.generate(
+    input=audio, batch_size_s=60, batch_size_threshold_s=30,
+    sentence_timestamp=True,
+)
+for item in segmented_results:
+    print(item.get("text", ""))
+    for sentence in item.get("sentence_info", []):
+        print(sentence.get("start"), sentence.get("end"), sentence.get("text", ""))
+</code></pre>
+<p><code>max_single_segment_time</code> 单位为<strong>毫秒</strong>，两个 batch 时长参数单位为<strong>秒</strong>。分段有助于处理较长文件，但不保证任意时长或固定内存占用；音频加载阶段和各模型仍会消耗资源。内存不足时，可缩短录音/片段或减小模型支持的 batch，再重新测量。句子边界依赖可用的时间戳和标点对齐，可能回退到 VAD 片段，应检查真实结果。</p>
+<p>需要说话人分割时，在所选组件支持的前提下，为相同流水线添加 <code>spk_model="cam++"</code>。遍历每条输入的 <code>item.get("sentence_info", [])</code> 后，再读取 <code>sentence.get("spk")</code>；不要从外层结果列表直接读取 <code>spk</code>。聚类标签不等于已验证的真实身份。参见<a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/sense_voice/demo_spk.py">说话人组合示例</a>。</p>
+<h2 id="4-处理多条录音">4. 处理多条录音</h2>
+<p>下面故意重复同一示例，演示列表输入，不依赖额外文件。实际使用时替换为本地 WAV 路径：</p>
+<pre id="code-4"><code class="language-python">batch_results = model.generate(input=[audio, audio], batch_size=1)
+for index, item in enumerate(batch_results):
+    print(index, item.get("key"), item.get("text", ""))
+</code></pre>
+<p>仅在模型支持且内存允许时增大 <code>batch_size</code>。也可输入 <code>wav.scp</code> 文件列表，每行使用 <code>utterance_id path</code>，路径相对于进程工作目录解析，每条录音使用唯一 ID。需要模型写出文件时设置 <code>output_dir</code>，仅接收返回列表不强制要求该参数。参见<a href="https://github.com/modelscope/FunASR/blob/main/data/list/train_wav.scp">数据列表示例</a>。独立文件的批处理不等于同一句话的流式分块。</p>
+<span data-legacy-doc-anchor="5-热词与语言边界" id="choose"></span><h2 id="5-热词与语言边界">5. 热词与语言边界</h2>
+<p>本工作区中 ModelScope 的 <code>paraformer-zh</code> 别名映射到 SeACo Paraformer，其实现接受单数 <code>hotword</code>，值为以空格分隔的字符串：</p>
+<pre id="code-5"><code class="language-python">biased_results = model.generate(input=audio, hotword="魔搭 达摩院")
+print([item.get("text", "") for item in biased_results])
+</code></pre>
+<p>这是模型级上下文偏置，不保证一定插入指定词，也不是确定性文本替换。请确认实际解析出的模型，并与不加热词的结果对比。参见 <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/seaco_paraformer/model.py">SeACo 实现</a>与<a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/contextual_paraformer/demo.py">上下文 Paraformer 示例</a>。</p>
+<p>本源码工作区的文本后处理是另一种操作：</p>
+<pre id="code-6"><code class="language-python">corrected_results = model.generate(
+    input=audio,
+    postprocess_hotwords={"科大迅飞": "科大讯飞"},
+    return_postprocess_hotword_matches=True,
+)
+for item in corrected_results:
+    print(item.get("text", ""), item.get("postprocess_hotword_matches", []))
+</code></pre>
+<p>显式映射替换输出文本中的匹配项。<code>postprocess_hotword_file</code> 还支持每行一个目标词或 <code>错误词=&gt;目标词</code> 映射。模糊匹配额外需要 <code>pypinyin</code> 和 <code>rapidfuzz</code>，显式映射不需要。<a href="https://github.com/modelscope/FunASR/blob/main/funasr/utils/postprocess_hotwords.py">后处理实现</a>保留原有时间戳，不会重新对齐修改后的文本；生成字幕或宣称对齐准确前，请审查替换结果。</p>
+<p><code>hotword</code>、<code>hotwords</code> 和 <code>language</code> <strong>不是可互换的通用 SDK 选项</strong>。例如 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/fun_asr_nano/README_zh.md">Fun-ASR-Nano</a>读取复数 <code>hotwords</code> 和模型专属语言提示。修改提示不能把单语言权重变成多语言权重。语言支持、提示取值、流式能力、对齐和依赖版本应按<a href="https://www.funasr.com/docs/model-zoo.html">模型仓库</a>及精确模型指南确认，不要跨模型照搬语言数量或安装版本。</p>
+<span data-legacy-doc-anchor="6-进入具体工作流" id="scenarios"></span><span data-legacy-doc-anchor="6-进入具体工作流" id="streaming"></span><span data-legacy-doc-anchor="6-进入具体工作流" id="emotion"></span><span data-legacy-doc-anchor="6-进入具体工作流" id="deploy-agent"></span><span data-legacy-doc-anchor="6-进入具体工作流" id="faq"></span><h2 id="6-进入具体工作流">6. 进入具体工作流</h2>
+<ul>
+<li><strong>流式识别：</strong><a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer_streaming/demo.py">Paraformer 流式示例</a>。每个音频流维护独立 <code>cache={}</code>，最后一块设置 <code>is_final=True</code>。16 kHz 下 <code>[0, 10, 5]</code> 的 600 ms 对应 <strong>9600 个采样点</strong>，不是 960；分块时长不代表端到端延时。流式 VAD 可能返回 <code>[start, -1]</code>、<code>[-1, end]</code>、完整区间或空区间，单位为毫秒。</li>
+<li><strong>标点与对齐：</strong><a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/ct_transformer/demo.py">标点示例</a>与<a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/monotonic_aligner/demo.py">时间戳预测示例</a>。对齐需要对应的文本输入，不等同于语音识别。</li>
+<li><strong>其他模型系列：</strong><a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/sense_voice/README_zh.md">SenseVoice</a>、<a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/fun_asr_nano/README_zh.md">Fun-ASR-Nano</a>、<a href="https://www.funasr.com/docs/moss-transcribe-diarize.html">第三方 OpenMOSS 集成</a>。更多入口统一在模型仓库查找。</li>
+<li><strong>命令行与服务：</strong><a href="https://www.funasr.com/docs/command-line.html">CLI 参考</a>、<a href="https://www.funasr.com/docs/runtime-guide.html">运行时概览</a>和 <a href="https://www.funasr.com/docs/docker.html">Docker</a>。Python 参数不代表服务请求具有相同结构。</li>
+</ul>
+<p><a id="模型训练与测试" name="模型训练与测试"></a></p>
+<h2 id="训练与验证入口">训练与验证入口</h2>
+<p>请使用 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer/README.md">Paraformer 配方</a>、<a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer/finetune.sh">finetune.sh</a>和<a href="https://github.com/modelscope/FunASR/blob/main/data/list/train.jsonl">训练数据示例</a>。启动前检查数据集路径、标签对齐、模型许可、GPU 分配和输出目录；训练不是安装冒烟测试。测试训练后权重时，先检查 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer/infer_from_local.sh">infer_from_local.sh</a>，确保配置、分词器/前端资源和 checkpoint 路径一致。<a href="https://github.com/modelscope/FunASR/blob/main/data/list/val.jsonl">验证数据</a>应与训练数据分开。</p>
+<p><a id="模型导出与测试" name="模型导出与测试"></a></p>
+<span data-legacy-doc-anchor="导出与运行时验证" id="export"></span><h2 id="导出与运行时验证">导出与运行时验证</h2>
+<p>按照模型的 <a href="https://github.com/modelscope/FunASR/blob/main/examples/industrial_data_pretraining/paraformer/export.py">Paraformer 导出示例</a>和 <a href="https://github.com/modelscope/FunASR/blob/main/runtime/python/onnxruntime/README.md">ONNX Runtime 指南</a>操作。导出支持与额外依赖由具体模型/后端决定。导出成功不表示结果等价；部署前应使用有代表性的输入测试导出制品，并与原模型比较。</p>
+<p><a id="新模型注册教程" name="新模型注册教程"></a></p>
+<h2 id="注册自定义模型">注册自定义模型</h2>
+<p>参见<a href="https://github.com/modelscope/FunASR/blob/main/docs/tutorial/Tables_zh.md">注册表教程</a>和 <a href="https://github.com/modelscope/FunASR/blob/main/funasr/models/sense_voice/model.py">SenseVoice 实现</a>。完成注册不代表 <code>generate()</code> 契约已经满足，模型推理结果必须与计划使用的下游组件匹配。</p>
+<p>遇到问题时，带上解释器/依赖版本、实际模型 ID/revision、输入格式和最小复现，回到<a href="https://www.funasr.com/docs/troubleshooting.html">常见问题</a>。不要在反馈中附带私密音频或凭据。</p></article>
+<nav aria-label="相邻文档" class="docs-next">
+<a href="https://www.funasr.com/docs/installation.html">← 安装与环境验证</a><a href="https://www.funasr.com/docs/python-api.html">Python SDK: AutoModel →</a> </nav>
+</div>
+<aside class="docs-toc"><strong>本页目录</strong><div class="toc">
+<ul>
+<li><a href="#python-sdk-教程">Python SDK 教程</a><ul>
+<li><a href="#1-完成第一次转写">1. 完成第一次转写</a></li>
+<li><a href="#2-理解参数和结果">2. 理解参数和结果</a></li>
+<li><a href="#3-添加-vad标点与句级时间戳">3. 添加 VAD、标点与句级时间戳</a></li>
+<li><a href="#4-处理多条录音">4. 处理多条录音</a></li>
+<li><a href="#5-热词与语言边界">5. 热词与语言边界</a></li>
+<li><a href="#6-进入具体工作流">6. 进入具体工作流</a></li>
+<li><a href="#训练与验证入口">训练与验证入口</a></li>
+<li><a href="#导出与运行时验证">导出与运行时验证</a></li>
+<li><a href="#注册自定义模型">注册自定义模型</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</aside></div>
+</main>
+<footer class="site-footer">
+<div>
+<strong>FunASR</strong>
+<p>面向生产部署的开源语音基础设施。</p>
+</div>
+<nav aria-label="官方仓库" class="footer-repositories" data-footer-repositories="">
+<strong>官方仓库</strong>
+<div class="footer-links">
+<a href="https://www.funasr.com/go/fun-asr">Fun-ASR</a>
+<a href="https://www.funasr.com/go/sensevoice">SenseVoice</a>
+<a href="https://www.funasr.com/go/funclip">FunClip</a>
+</div>
+</nav>
+<div class="footer-links">
+<a href="https://www.funasr.com/deploy/">部署</a>
+<a href="https://www.funasr.com/docs/">文档</a>
+<a href="https://www.funasr.com/go/releases">发布</a>
+<a href="https://www.funasr.com/donors.html">功德榜</a>
+</div>
+</footer>
+<script defer="" src="../assets/js/site.d446f5fbcfe2.js"></script>
+<script defer="" src="../assets/js/experience.3f688a12942a.js"></script>
+</body>
+</html>
